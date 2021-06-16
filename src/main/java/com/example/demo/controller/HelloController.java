@@ -2,10 +2,14 @@ package com.example.demo.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.model.User;
 
 @RestController
 @RequestMapping("/hello")
@@ -24,10 +28,15 @@ public class HelloController {
 		return "Hello "+name+ "!";
 		
 	}
-	@RequestMapping (value = {"/query2"} , method = RequestMethod.GET)
-	public String sayHello(@RequestParam(value = "fname") String fname , @RequestParam(value = "lname")String lname ) {
-		return "HELLO  " + fname +" "+ lname + " !! ";
+	
+	
+	@PostMapping("/post")
+	public String sayHello(@RequestBody User user) {
+		return "Hello"+ user.getFirstName() + " "+user.getLastName() + "!";
+		
 	}
+	
+	
 	
 	
 
